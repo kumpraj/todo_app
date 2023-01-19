@@ -18,12 +18,8 @@ const todoSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    isPriority: {
-        type: Boolean,
-        default: false
-    },
 },{
     timestamps: true
 })
 
-module.exports = mongoose.model("Todo", todoSchema);
+export default mongoose.model("Todo", todoSchema);
