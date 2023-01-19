@@ -13,7 +13,7 @@ export const createTodo = async(req, res) => {
             return res.status(400).json({error: "Title and Tasks are required"})
         }
 
-        // creating a todo and saving it to db
+        // creating a todo and saving it to db (asynchronous)
         const todo = await Todo.create({
             title,
             tasks,
