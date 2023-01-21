@@ -4,7 +4,7 @@ require('dotenv').config()
 //  importing express package
 const express = require('express');
 
-const database = require('./config/database');
+const { dbConnect } = require('./config/database');
 
 const todoRoutes = require('./routes/todoRoutes');
 const app = express();
@@ -15,8 +15,10 @@ const cors = require('cors');
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
-database();
+// calling dbConnect fn to connect to db
+dbConnect();
 app.use('/',todoRoutes);
 
 

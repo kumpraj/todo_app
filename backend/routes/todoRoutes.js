@@ -1,12 +1,11 @@
 const express = require('express');
 
-const {
-    createTodo,
-    getTodo,
-    getTodos,
-    updateTodo,
-    deleteTodo
-} = require('../controllers');
+const { createTodo } = require('../controllers/createTodo');
+const { getTodo } = require('../controllers/getTodo');
+const { getTodos } = require('../controllers/getTodos');
+const { updateTodo } = require('../controllers/updateTodo');
+const { deleteTodo } = require('../controllers/deleteTodo');
+
 
 //  creating a router variable of Router class to define different routes for the application
 const router = express.Router();

@@ -1,10 +1,11 @@
-import Todo from '../models/todoSchema';
+const Todo = require("../models/todoSchema");
 
-export const deleteTodo = async (req,res) => {
+
+exports.deleteTodo = async (req,res) => {
     
     try {
         // fetch Id from params
-        const { todoId } = req.params;
+        const todoId = req.params.id;
         
         if(!todoId){
             return res.status(400).json({

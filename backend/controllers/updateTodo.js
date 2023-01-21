@@ -1,10 +1,11 @@
-import Todo from "../models/todoSchema";
+const Todo = require("../models/todoSchema");
 
-export const updateTodo = async (req,res) => {
+
+exports.updateTodo = async (req,res) => {
 
     try {
         //  fetch id to update the todo
-        const { todoId } = req.params;
+        const todoId = req.params.id;
 
         if(!todoId) {
             throw new Error("todoId not found to update");

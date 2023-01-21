@@ -1,17 +1,15 @@
-import Todo from '../models/todoSchema';
+const Todo = require("../models/todoSchema");
 
-export const getTodo = async (req,res) => {
+
+exports.getTodo = async (req,res) => {
 
     try {
         
         //  fetch the particular todo by Id
-        const {todoId} = req.params
+        const todoId = req.params.id
 
         if (!todoId) {
-            return res.json(400).json({
-                success: false,
-                message: "TodoId not found",
-            })
+            throw new Error('No todoId found');
         }
 
 
@@ -29,8 +27,8 @@ export const getTodo = async (req,res) => {
         })
 
     } catch (error) {
-        console.log("Error finding todoId");
-        console.log("Error: ",error);
+        // console.log("Error finding todoId");
+        // console.log("Error: ",error);
         
         res.status(400).json({
             success: false,

@@ -9,7 +9,7 @@ const {MONGODB_URL} = process.env;
     // if successfully connected - success message
     // else failure mesage with error and exits the process
 */ 
-exports.connect = () => {
+exports.dbConnect = () => {
     mongoose.connect(MONGODB_URL, {
         useNewUrlParser: true, 
         useUnifiedTopology: true

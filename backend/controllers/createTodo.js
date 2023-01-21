@@ -1,7 +1,7 @@
-import Todo from "../models/todoSchema";
+const Todo = require("../models/todoSchema");
 
 
-export const createTodo = async(req, res) => {
+exports.createTodo = async(req, res) => {
 
     try {
     
