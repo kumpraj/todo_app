@@ -1,21 +1,23 @@
 //  configuring dotenv package
 require('dotenv').config()
 
-//  importing express package & creating an app
+//  importing express package
 const express = require('express');
-const app = express()
+
+const database = require('./config/database');
+
+const todoRoutes = require('./routes/todoRoutes');
+const app = express();
 
 //  importing cors package
 const cors = require('cors');
 
+// Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-
-app.get('/',(req,res) => {
-    res.status(200).json({
-        success: true,
-        message: 'Homepage'
-    })
-});
+database();
+app.use('/',todoRoutes);
 
 
 // exporting express app setup
