@@ -7,6 +7,7 @@ exports.updateTodo = async (req,res) => {
         //  fetch id to update the todo
         const todoId = req.params.id;
 
+        
         if(!todoId) {
             throw new Error("todoId not found to update");
         }
