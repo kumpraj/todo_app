@@ -60,7 +60,7 @@ function TodoForm() {
     }
 
   return (
-                <div className="w-5/6 md:w-3/4 lg:w-2/3 xl:w-[500px] 2xl:w-[550px] mt-8 bg-slate-200 px-8 py-8 mx-8 my-auto rounded-lg">
+                <div className="w-5/6 md:w-3/4 lg:w-2/3 xl:w-[500px] 2xl:w-[550px] mt-2 bg-slate-200 px-8 py-8 mx-8 my-auto rounded-lg">
 
                     <h2 className="text-center text-2xl font-bold tracking-wide text-gray-800">Add your Todo Here!!!</h2>
                     
