@@ -4,6 +4,7 @@ import axios from 'axios';
 function TodoList() {
     const [todoList, setTodoList] = useState(null);
 
+    // to fetch all todos from the db
     const fetchTodoList = async () => {
         const resp = await axios.get('http://localhost:4001/getTodos');
         console.log(resp);
@@ -13,6 +14,15 @@ function TodoList() {
         }
     }
 
+    // to deleteTodo from the todoList
+    const handleDelete = async (id) => {
+        const resp = await axios.delete(`http://localhost:4001/deleteTodo/${id}`);
+
+        console.log(resp);
+
+    }
+
+    // to fetch the updated todos if change in any todoList
     useEffect(() => {
         fetchTodoList();
     },[todoList]);
@@ -37,7 +47,7 @@ function TodoList() {
                         <td>{todo.tasks.toString()}</td>
                         <td>{todo.isImportant}</td>
                         <td>update</td>
-                        <td>delete</td>
+                        <td><button className='hover:text-red-400' onClick={() => handleDelete(todo._id)}>delete</button></td>
                     </tr>
                 ))}
             </tbody>
