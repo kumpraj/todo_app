@@ -35,7 +35,7 @@ function TodoList() {
         }
 
         // check for title & tasks
-        if(!title || !(tasks.length === 0)){
+        if(!title || (tasks.length === 0)){
             alert('Both Title and tasks are mandatory fields');
         }else {
             const resp = await axios.put(`http://localhost:4001/updateTodo/${todo._id}`,{
@@ -59,7 +59,7 @@ function TodoList() {
         <div className="text-white flex items-center justify-center ">
 	        <div className="col-span-12">
 		        <div className="overflow-auto lg:overflow-visible ">
-                    <table className='table border-separate space-y-6 text-sm'>
+                    <table className='table border-separate space-y-6 text-sm text-gray-800 font-bold'>
                         <thead className='bg-slate-600 text-purple-300 border-2 borger-green-300'>
                             <tr>
                             <th className='px-3 py-1'>Title</th>
