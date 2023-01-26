@@ -22,6 +22,35 @@ function TodoList() {
 
     }
 
+    // to update todo from todoList
+    const handleUpdate = async (todo) => {
+
+        const title = prompt("Enter your updated title");
+        const tasks = prompt("Enter the tasks comma separated").split(',');
+        const important = prompt('Enter true or false','false').toLowerCase();
+        const isImportant = false;
+
+        if(important === 'true'){
+            isImportant = true;
+        }
+
+        // check for title & tasks
+        if(!title || !tasks){
+            alert('Both Title and tasks are mandatory fields');
+        }else {
+            const resp = await axios.put(`http://localhost:4001/updateTodo/${todo._id}`,{
+                title,
+                tasks,
+                isImportant
+            })
+
+            console.log(resp);
+        }
+
+
+
+    }
+
     // to fetch the updated todos if change in any todoList
     useEffect(() => {
         fetchTodoList();
@@ -45,8 +74,8 @@ function TodoList() {
                     <tr>
                         <td>{todo.title}</td>
                         <td>{todo.tasks.toString()}</td>
-                        <td>{todo.isImportant}</td>
-                        <td>update</td>
+                        <td>{(todo.isImportant === true ? 'Yes': 'No')}</td>
+                        <td><button className='hover:text-green-400' onClick={() => handleUpdate(todo)}>update</button></td>
                         <td><button className='hover:text-red-400' onClick={() => handleDelete(todo._id)}>delete</button></td>
                     </tr>
                 ))}
