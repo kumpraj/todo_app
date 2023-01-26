@@ -35,7 +35,7 @@ function TodoList() {
         }
 
         // check for title & tasks
-        if(!title || !tasks){
+        if(!title || !(tasks.length === 0)){
             alert('Both Title and tasks are mandatory fields');
         }else {
             const resp = await axios.put(`http://localhost:4001/updateTodo/${todo._id}`,{
@@ -46,9 +46,6 @@ function TodoList() {
 
             console.log(resp);
         }
-
-
-
     }
 
     // to fetch the updated todos if change in any todoList
@@ -58,29 +55,35 @@ function TodoList() {
 
 
   return (
-    <div>
-        <table>
-            <thead>
-                <tr>
-                <th>Title</th>
-                <th>Taks</th>
-                <th>isImportant</th>
-                <th>Update</th>
-                <th>Delete</th>
-                </tr>
-            </thead>
-            <tbody>
-                {todoList && todoList.map((todo) => (
-                    <tr>
-                        <td>{todo.title}</td>
-                        <td>{todo.tasks.toString()}</td>
-                        <td>{(todo.isImportant === true ? 'Yes': 'No')}</td>
-                        <td><button className='hover:text-green-400' onClick={() => handleUpdate(todo)}>update</button></td>
-                        <td><button className='hover:text-red-400' onClick={() => handleDelete(todo._id)}>delete</button></td>
-                    </tr>
-                ))}
-            </tbody>
-        </table>
+    <div className="w-5/6 md:w-3/4 lg:w-2/3 xl:w-[600px] 2xl:w-[600px] mt-2 bg-slate-400 px-8 py-8 mx-8 my-auto rounded-lg">
+        <div className="text-white flex items-center justify-center ">
+	        <div className="col-span-12">
+		        <div className="overflow-auto lg:overflow-visible ">
+                    <table className='table border-separate space-y-6 text-sm'>
+                        <thead className='bg-slate-600 text-purple-300 border-2 borger-green-300'>
+                            <tr>
+                            <th className='px-3 py-1'>Title</th>
+                            <th className='px-3 py-1'>Taks</th>
+                            <th className='px-3 py-1'>isImportant</th>
+                            <th className='px-3 py-1'>Update</th>
+                            <th className='px-3 py-1'>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {todoList && todoList.map((todo) => (
+                                <tr>
+                                    <td className='px-3 py-2'>{todo.title}</td>
+                                    <td className='px-3 py-2'>{todo.tasks.toString()}</td>
+                                    <td className='px-3 py-2'>{(todo.isImportant === true ? 'Yes': 'No')}</td>
+                                    <td className='px-3 py-2'><button className='hover:text-green-400' onClick={() => handleUpdate(todo)}>update</button></td>
+                                    <td className='px-3 py-2'><button className='hover:text-red-400' onClick={() => handleDelete(todo._id)}>delete</button></td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
   )
 }

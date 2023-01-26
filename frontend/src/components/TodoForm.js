@@ -43,24 +43,32 @@ function TodoForm() {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const todo = {
-            title: title,
-            tasks: taskArray,
-            isImportant: important
-        };
+        if(!title || (taskArray.length === 0)){
+            alert('Both title and tasks are mandatory');
+        }else {
 
-        const res = await axios.post('http://localhost:4001/createTodo', todo);
-        console.log(res);
+            const todo = {
+                title: title,
+                tasks: taskArray,
+                isImportant: important
+            };
+    
+            const res = await axios.post('http://localhost:4001/createTodo', todo);
+            console.log(res);
+    
+            //empty the fields
+            setTitle("");
+            setTaskArray([]);
+            setImportant(false);
 
-        //empty the fields
-        setTitle("");
-        setTaskArray([]);
-        setImportant(false);
+        }
+
+        
         
     }
 
   return (
-                <div className="w-5/6 md:w-3/4 lg:w-2/3 xl:w-[500px] 2xl:w-[550px] mt-2 bg-slate-200 px-8 py-8 mx-8 my-auto rounded-lg">
+                <div className="w-5/6 md:w-3/4 lg:w-2/3 xl:w-[500px] 2xl:w-[550px] mt-2 bg-slate-400 px-6 py-6 mx-8 my-auto rounded-lg">
 
                     <h2 className="text-center text-2xl font-bold tracking-wide text-gray-800">Add your Todo Here!!!</h2>
                     
@@ -75,7 +83,7 @@ function TodoForm() {
                             <label htmlFor="task" className="text-gray-700 text-lg font-bold">Enter Task</label>
                             <input type="task" name="task" id="task" value={task} onChange={handleChange} className="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900" placeholder="Enter your tasks"/>
 
-                            <ul className='my-6 border-2 flex gap-4'>
+                            <ul className='my-6 flex gap-4'>
                                 <h2 className='text-lg font-bold'>Tasks</h2>
                                 {taskArray && taskArray.map((t,index)=> (<li key={index} className='text-lg bg-green-400 rounded-lg'>{t}</li>))}
                             </ul>
