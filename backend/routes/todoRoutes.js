@@ -5,6 +5,7 @@ const { getTodo } = require('../controllers/getTodo');
 const { getTodos } = require('../controllers/getTodos');
 const { updateTodo } = require('../controllers/updateTodo');
 const { deleteTodo } = require('../controllers/deleteTodo');
+const { createUser } = require('../controllers/users/createUser');
 
 
 //  creating a router variable of Router class to define different routes for the application
@@ -23,6 +24,8 @@ router.get('/getTodos',getTodos);
 router.delete('/deleteTodo/:id', deleteTodo);
 
 router.put('/updateTodo/:id', updateTodo);
+
+router.post('/createUser',createUser);
 
 module.exports = router;
 
