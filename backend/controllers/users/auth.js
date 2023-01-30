@@ -1,5 +1,11 @@
 const User = require('../../models/userSchema');
 
+
+export const cookieOptions = {
+    expires : new Date(Date.now + 3*24*60*60*1000),
+    httpOnly: true,
+}
+
 exports.createUser = async (req,res) => {
 
     // fetch user details from body
@@ -32,6 +38,8 @@ exports.createUser = async (req,res) => {
     console.log(token);
 
     user.password = undefined;
+
+    res.cookie('token', token, cookieOptions);
 
     res.status(201).json({
         success: true,
